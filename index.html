@@ -80,7 +80,6 @@
             backdrop-filter: blur(8px);
             color: #aaa;
             width: fit-content;
-            white-space: nowrap;
         }
 
         @media (min-width: 768px) {
@@ -100,7 +99,6 @@
             transform: rotate(180deg);
         }
 
-        /* Mobile specific schedule adjustments */
         .mobile-schedule-grid {
             display: grid;
             grid-template-columns: 1fr;
@@ -116,7 +114,6 @@
 </head>
 <body class="min-h-screen">
 
-    <!-- Header -->
     <header class="bg-black border-b-4 border-red-600 p-4 md:p-6 sticky top-0 z-50 shadow-2xl">
         <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
             <div class="flex items-center gap-3">
@@ -125,7 +122,7 @@
             </div>
             <div class="flex items-center gap-2 bg-zinc-800 px-4 py-1.5 rounded-full text-[10px] md:text-sm">
                 <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
-                <span>Timezone: <strong>IST (GMT+5:30)</strong></span>
+                <span>Timezone: <strong>IST (India)</strong></span>
             </div>
         </div>
     </header>
@@ -136,22 +133,22 @@
         <section id="countdown-container" class="hidden">
             <div class="card-gradient rounded-2xl md:rounded-3xl p-6 md:p-8 text-center next-race-glow">
                 <p class="text-red-500 uppercase text-xs md:text-sm font-bold tracking-widest mb-2 md:mb-4">Up Next</p>
-                <h2 id="next-race-name" class="text-xl md:text-5xl f1-font mb-4 md:mb-6 italic uppercase">Loading...</h2>
+                <h2 id="next-race-name" class="text-xl md:text-5xl f1-font mb-4 md:mb-6 italic uppercase text-white">Loading...</h2>
                 <div class="grid grid-cols-4 gap-2 md:gap-4 max-w-2xl mx-auto">
                     <div class="bg-zinc-900 p-2 md:p-4 rounded-lg md:rounded-xl border border-zinc-700">
-                        <span id="days" class="text-lg md:text-5xl font-bold block">00</span>
+                        <span id="days" class="text-lg md:text-5xl font-bold block text-white">00</span>
                         <span class="text-[8px] md:text-xs uppercase text-zinc-500">Days</span>
                     </div>
                     <div class="bg-zinc-900 p-2 md:p-4 rounded-lg md:rounded-xl border border-zinc-700">
-                        <span id="hours" class="text-lg md:text-5xl font-bold block">00</span>
+                        <span id="hours" class="text-lg md:text-5xl font-bold block text-white">00</span>
                         <span class="text-[8px] md:text-xs uppercase text-zinc-500">Hours</span>
                     </div>
                     <div class="bg-zinc-900 p-2 md:p-4 rounded-lg md:rounded-xl border border-zinc-700">
-                        <span id="minutes" class="text-lg md:text-5xl font-bold block">00</span>
+                        <span id="minutes" class="text-lg md:text-5xl font-bold block text-white">00</span>
                         <span class="text-[8px] md:text-xs uppercase text-zinc-500">Mins</span>
                     </div>
                     <div class="bg-zinc-900 p-2 md:p-4 rounded-lg md:rounded-xl border border-zinc-700">
-                        <span id="seconds" class="text-lg md:text-5xl font-bold block">00</span>
+                        <span id="seconds" class="text-lg md:text-5xl font-bold block text-white">00</span>
                         <span class="text-[8px] md:text-xs uppercase text-zinc-500">Secs</span>
                     </div>
                 </div>
@@ -163,7 +160,7 @@
             <div class="w-full md:w-1/3">
                 <label class="block text-zinc-400 text-xs md:text-sm mb-2 ml-1">Search Circuit or City</label>
                 <div class="relative">
-                    <input type="text" id="searchInput" placeholder="e.g. Monza, Street..." class="w-full bg-zinc-900 border border-zinc-700 rounded-lg p-3 pl-10 focus:outline-none focus:border-red-600 text-sm">
+                    <input type="text" id="searchInput" placeholder="e.g. Monza, Street..." class="w-full bg-zinc-900 border border-zinc-700 rounded-lg p-3 pl-10 focus:outline-none focus:border-red-600 text-sm text-white">
                     <i class="fas fa-search absolute left-3 top-3.5 text-zinc-500"></i>
                 </div>
             </div>
@@ -194,89 +191,136 @@
             </div>
         </section>
 
-        <!-- Tech Info Section (Redesigned for Mobile) -->
+        <!-- Technical & Regulation Summary -->
         <section class="space-y-8 md:space-y-12 py-6">
             <div class="text-center space-y-3 px-4">
-                <h2 class="text-2xl md:text-6xl f1-font font-bold tracking-tighter uppercase leading-tight">Formula 1 2026: <span class="text-red-600">The Global Reset</span></h2>
-                <p class="text-zinc-400 text-sm md:text-base max-w-2xl mx-auto"> regulatory overhaul. agile cars and hybrid power.</p>
+                <h2 class="text-3xl md:text-6xl f1-font font-bold tracking-tighter uppercase leading-tight">Formula 1 2026: <span class="text-red-600">The Global Reset</span></h2>
+                <p class="text-zinc-400 text-sm md:text-base max-w-2xl mx-auto italic">FIA Goal: "Agile Racing" - Smaller, lighter cars for better battling.</p>
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
+                <!-- 1. Technical Revolution -->
                 <div class="card-gradient p-6 md:p-8 rounded-2xl md:rounded-3xl border-t-4 border-red-600">
                     <h3 class="f1-font text-lg md:text-2xl mb-4 md:mb-6 flex items-center gap-3">
-                        <i class="fas fa-microchip text-red-600"></i> 1. Technical Revolution
+                        <i class="fas fa-microchip text-red-600"></i> 1. Technical Revolution: "Nimble Cars"
                     </h3>
-                    <div class="grid grid-cols-2 gap-3 md:gap-4">
-                        <div class="bg-zinc-900/50 p-3 md:p-4 rounded-lg border border-zinc-800">
-                            <span class="text-red-500 font-bold block text-[10px] uppercase">Weight</span>
-                            <span class="text-sm md:text-xl font-bold">768kg (-30kg)</span>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4">
+                        <div class="bg-zinc-900/50 p-4 rounded-xl border border-zinc-800">
+                            <span class="text-red-500 font-bold block text-[10px] uppercase mb-1">Weight Reduction</span>
+                            <span class="text-sm md:text-lg font-bold">Dropped by 30kg</span>
+                            <span class="text-zinc-500 block text-xs">(to 768kg)</span>
                         </div>
-                        <div class="bg-zinc-900/50 p-3 md:p-4 rounded-lg border border-zinc-800">
-                            <span class="text-red-500 font-bold block text-[10px] uppercase">Width</span>
-                            <span class="text-sm md:text-xl font-bold">1900mm (-100)</span>
+                        <div class="bg-zinc-900/50 p-4 rounded-xl border border-zinc-800">
+                            <span class="text-red-500 font-bold block text-[10px] uppercase mb-1">Dimensions</span>
+                            <span class="text-sm md:text-lg font-bold">Shortened & Narrowed</span>
+                            <span class="text-zinc-500 block text-xs">WB: -200mm | Width: -100mm</span>
                         </div>
-                        <div class="bg-zinc-900/50 p-3 md:p-4 rounded-lg border border-zinc-800">
-                            <span class="text-red-500 font-bold block text-[10px] uppercase">Downforce</span>
-                            <span class="text-sm md:text-xl font-bold">-30% Reduction</span>
+                        <div class="bg-zinc-900/50 p-4 rounded-xl border border-zinc-800">
+                            <span class="text-red-500 font-bold block text-[10px] uppercase mb-1">Tyres</span>
+                            <span class="text-sm md:text-lg font-bold">Narrower Profile</span>
+                            <span class="text-zinc-500 block text-xs">F: -25mm | R: -30mm</span>
                         </div>
-                        <div class="bg-zinc-900/50 p-3 md:p-4 rounded-lg border border-zinc-800">
-                            <span class="text-red-500 font-bold block text-[10px] uppercase">Drag</span>
-                            <span class="text-sm md:text-xl font-bold">-55% Reduction</span>
+                        <div class="bg-zinc-900/50 p-4 rounded-xl border border-zinc-800">
+                            <span class="text-red-500 font-bold block text-[10px] uppercase mb-1">Aerodynamics</span>
+                            <span class="text-sm md:text-lg font-bold">-30% Downforce</span>
+                            <span class="text-zinc-500 block text-xs">-55% Drag reduction</span>
                         </div>
                     </div>
                 </div>
 
+                <!-- 2. Active Aerodynamics -->
                 <div class="card-gradient p-6 md:p-8 rounded-2xl md:rounded-3xl border-t-4 border-red-600 flex flex-col">
                     <h3 class="f1-font text-lg md:text-2xl mb-2 flex items-center gap-3">
                         <i class="fas fa-wind text-red-600"></i> 2. Active Aerodynamics
                     </h3>
-                    <p class="text-zinc-400 mb-4 md:mb-6 text-xs md:text-sm">X and Z modes replacing standard DRS.</p>
+                    <p class="text-zinc-400 mb-4 md:mb-6 text-xs md:text-sm">DRS is replaced by Active Aero with movable front and rear wing flaps.</p>
                     
-                    <div class="flex gap-1.5 md:gap-2 mb-4 overflow-x-auto pb-2 scrollbar-hide">
+                    <div class="flex gap-1.5 md:gap-2 mb-4 overflow-x-auto pb-2">
                         <button onclick="showAero('z-mode')" id="btn-z-mode" class="tab-btn active px-3 py-1.5 border border-zinc-700 rounded-md text-[10px] font-bold whitespace-nowrap uppercase">Z-Mode</button>
                         <button onclick="showAero('x-mode')" id="btn-x-mode" class="tab-btn px-3 py-1.5 border border-zinc-700 rounded-md text-[10px] font-bold whitespace-nowrap uppercase">X-Mode</button>
-                        <button onclick="showAero('override')" id="btn-override" class="tab-btn px-3 py-1.5 border border-zinc-700 rounded-md text-[10px] font-bold whitespace-nowrap uppercase">Manual Boost</button>
+                        <button onclick="showAero('override')" id="btn-override" class="tab-btn px-3 py-1.5 border border-zinc-700 rounded-md text-[10px] font-bold whitespace-nowrap uppercase">Manual Override</button>
                     </div>
 
                     <div id="aero-content" class="bg-black/40 p-4 md:p-6 rounded-xl flex-grow flex flex-col justify-center min-h-[100px] transition-opacity duration-200">
-                        <h4 id="aero-title" class="f1-font text-sm md:text-lg text-red-500 mb-1">Cornering Mode</h4>
+                        <h4 id="aero-title" class="f1-font text-sm md:text-lg text-red-500 mb-1">Z-Mode: Cornering</h4>
                         <p id="aero-desc" class="text-zinc-300 text-xs md:text-sm">Flaps closed for maximum downforce in turns.</p>
                     </div>
                 </div>
-            </div>
 
-            <!-- Driver Grid -->
-            <div class="card-gradient p-6 md:p-8 rounded-2xl md:rounded-3xl border-t-4 border-red-600">
-                <h3 class="f1-font text-lg md:text-2xl mb-6 flex items-center gap-3">
-                    <i class="fas fa-users text-red-600"></i> 4. Confirmed 2026 Grid
-                </h3>
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
-                    <div class="p-3 bg-black/50 rounded-lg border border-zinc-800">
-                        <span class="text-red-500 font-bold block text-[10px] uppercase mb-1">Ferrari</span>
-                        <div class="flex flex-col text-sm">
-                            <span class="font-semibold text-white">Hamilton</span>
-                            <span class="text-zinc-400">Leclerc</span>
+                <!-- 3. Power Unit Evolution -->
+                <div class="card-gradient p-6 md:p-8 rounded-2xl md:rounded-3xl border-t-4 border-red-600">
+                    <h3 class="f1-font text-lg md:text-2xl mb-6 flex items-center gap-3">
+                        <i class="fas fa-bolt text-red-600"></i> 3. Power Unit Evolution
+                    </h3>
+                    <div class="space-y-4">
+                        <div class="flex items-start gap-3">
+                            <div class="bg-zinc-800 text-red-600 p-2 rounded-lg text-xs"><i class="fas fa-sync"></i></div>
+                            <div>
+                                <span class="font-bold block text-sm">50/50 Power Split</span>
+                                <span class="text-xs text-zinc-400">Equal balance between ICE and Electric (MGU-K).</span>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <div class="bg-zinc-800 text-red-600 p-2 rounded-lg text-xs"><i class="fas fa-plug"></i></div>
+                            <div>
+                                <span class="font-bold block text-sm">MGU-K Power Surge</span>
+                                <span class="text-xs text-zinc-400">Increased to 350kW (approx. 470hp).</span>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <div class="bg-zinc-800 text-red-600 p-2 rounded-lg text-xs"><i class="fas fa-flask"></i></div>
+                            <div>
+                                <span class="font-bold block text-sm">100% Sustainable Fuel</span>
+                                <span class="text-xs text-zinc-400">Carbon-neutral drop-in fuels introduced.</span>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <div class="bg-zinc-800 text-red-600 p-2 rounded-lg text-xs"><i class="fas fa-minus-circle"></i></div>
+                            <div>
+                                <span class="font-bold block text-sm">MGU-H Removal</span>
+                                <span class="text-xs text-zinc-400">Complex heat recovery system removed for simplification.</span>
+                            </div>
                         </div>
                     </div>
-                    <div class="p-3 bg-black/50 rounded-lg border border-zinc-800">
-                        <span class="text-red-500 font-bold block text-[10px] uppercase mb-1">Red Bull</span>
-                        <div class="flex flex-col text-sm">
-                            <span class="font-semibold text-white">Verstappen</span>
-                            <span class="text-zinc-400">Hadjar</span>
-                        </div>
+                </div>
+
+                <!-- 4. Confirmed 2026 Driver Grid -->
+                <div class="card-gradient p-6 md:p-8 rounded-2xl md:rounded-3xl border-t-4 border-red-600">
+                    <h3 class="f1-font text-lg md:text-2xl mb-6 flex items-center gap-3">
+                        <i class="fas fa-users text-red-600"></i> 4. Confirmed 2026 Driver Grid
+                    </h3>
+                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                        <div class="p-3 bg-black/50 rounded-lg border border-zinc-800"><span class="text-red-500 font-bold block text-[9px] uppercase mb-1">Red Bull</span><p class="text-xs">Verstappen</p><p class="text-xs text-zinc-500">Hadjar</p></div>
+                        <div class="p-3 bg-black/50 rounded-lg border border-zinc-800"><span class="text-red-500 font-bold block text-[9px] uppercase mb-1">Ferrari</span><p class="text-xs">Hamilton</p><p class="text-xs text-zinc-500">Leclerc</p></div>
+                        <div class="p-3 bg-black/50 rounded-lg border border-zinc-800"><span class="text-red-500 font-bold block text-[9px] uppercase mb-1">McLaren</span><p class="text-xs">Norris</p><p class="text-xs text-zinc-500">Piastri</p></div>
+                        <div class="p-3 bg-black/50 rounded-lg border border-zinc-800"><span class="text-red-500 font-bold block text-[9px] uppercase mb-1">Mercedes</span><p class="text-xs">Russell</p><p class="text-xs text-zinc-500">Antonelli</p></div>
+                        <div class="p-3 bg-black/50 rounded-lg border border-zinc-800"><span class="text-red-500 font-bold block text-[9px] uppercase mb-1">Aston Martin</span><p class="text-xs">Alonso</p><p class="text-xs text-zinc-500">Stroll</p></div>
+                        <div class="p-3 bg-black/50 rounded-lg border border-zinc-800"><span class="text-red-500 font-bold block text-[9px] uppercase mb-1">Audi</span><p class="text-xs">Hülkenberg</p><p class="text-xs text-zinc-500">Bortoleto</p></div>
+                        <div class="p-3 bg-black/50 rounded-lg border border-zinc-800"><span class="text-red-500 font-bold block text-[9px] uppercase mb-1">Cadillac</span><p class="text-xs">Pérez</p><p class="text-xs text-zinc-500">Bottas</p></div>
+                        <div class="p-3 bg-black/50 rounded-lg border border-zinc-800"><span class="text-red-500 font-bold block text-[9px] uppercase mb-1">Williams</span><p class="text-xs">Sainz</p><p class="text-xs text-zinc-500">Albon</p></div>
+                        <div class="p-3 bg-black/50 rounded-lg border border-zinc-800"><span class="text-red-500 font-bold block text-[9px] uppercase mb-1">Alpine</span><p class="text-xs">Gasly</p><p class="text-xs text-zinc-500">Colapinto</p></div>
+                        <div class="p-3 bg-black/50 rounded-lg border border-zinc-800"><span class="text-red-500 font-bold block text-[9px] uppercase mb-1">Haas</span><p class="text-xs">Ocon</p><p class="text-xs text-zinc-500">Bearman</p></div>
+                        <div class="p-3 bg-black/50 rounded-lg border border-zinc-800"><span class="text-red-500 font-bold block text-[9px] uppercase mb-1">Racing Bulls</span><p class="text-xs">Lawson</p><p class="text-xs text-zinc-500">Lindblad</p></div>
                     </div>
-                    <div class="p-3 bg-black/50 rounded-lg border border-zinc-800">
-                        <span class="text-red-500 font-bold block text-[10px] uppercase mb-1">McLaren</span>
-                        <div class="flex flex-col text-sm">
-                            <span class="font-semibold text-white">Norris</span>
-                            <span class="text-zinc-400">Piastri</span>
+                </div>
+
+                <!-- 5. Major Calendar Changes -->
+                <div class="card-gradient p-6 md:p-8 rounded-2xl md:rounded-3xl border-t-4 border-red-600">
+                    <h3 class="f1-font text-lg md:text-2xl mb-6 flex items-center gap-3">
+                        <i class="fas fa-calendar-alt text-red-600"></i> 5. Major Calendar Changes
+                    </h3>
+                    <div class="space-y-4">
+                        <div class="bg-zinc-900/40 p-4 rounded-xl border-l-4 border-red-600">
+                            <span class="block text-xs font-bold text-red-500 uppercase mb-1">Madrid Debut</span>
+                            <p class="text-xs text-zinc-400">Spanish GP moves to a new street circuit in Madrid (Barcelona retains a slot).</p>
                         </div>
-                    </div>
-                    <div class="p-3 bg-black/50 rounded-lg border border-zinc-800">
-                        <span class="text-red-500 font-bold block text-[10px] uppercase mb-1">Mercedes</span>
-                        <div class="flex flex-col text-sm">
-                            <span class="font-semibold text-white">Russell</span>
-                            <span class="text-zinc-400">Antonelli</span>
+                        <div class="bg-zinc-900/40 p-4 rounded-xl border-l-4 border-red-600">
+                            <span class="block text-xs font-bold text-red-500 uppercase mb-1">Triple Header Finale</span>
+                            <p class="text-xs text-zinc-400">Season ends with a sprint: Las Vegas, Qatar, and Abu Dhabi.</p>
+                        </div>
+                        <div class="bg-zinc-900/40 p-4 rounded-xl border-l-4 border-red-600">
+                            <span class="block text-xs font-bold text-red-500 uppercase mb-1">Baku Shift</span>
+                            <p class="text-xs text-zinc-400">Azerbaijan GP will be held on a Saturday for the first time.</p>
                         </div>
                     </div>
                 </div>
@@ -321,10 +365,8 @@
             const row = document.getElementById(`details-${rnd}`);
             const main = document.getElementById(`main-${rnd}`);
             const isActive = row.classList.contains('active');
-            
             document.querySelectorAll('.details-row').forEach(r => r.classList.remove('active'));
             document.querySelectorAll('.main-row').forEach(r => r.classList.remove('active'));
-            
             if (!isActive) {
                 row.classList.add('active');
                 main.classList.add('active');
@@ -334,11 +376,9 @@
         function renderRaces(filter = 'all', search = '') {
             const tbody = document.getElementById('raceTableBody');
             tbody.innerHTML = '';
-
             const filtered = races.filter(race => {
                 const matchesFilter = filter === 'all' || race.type.toLowerCase() === filter;
-                const matchesSearch = race.gp.toLowerCase().includes(search.toLowerCase()) || 
-                                    race.venue.toLowerCase().includes(search.toLowerCase());
+                const matchesSearch = race.gp.toLowerCase().includes(search.toLowerCase()) || race.venue.toLowerCase().includes(search.toLowerCase());
                 return matchesFilter && matchesSearch;
             });
 
@@ -352,128 +392,83 @@
                 const formattedDate = new Date(race.date).toLocaleDateString('en-GB', { day: '2-digit', month: 'short' });
 
                 mainRow.innerHTML = `
-                    <td class="p-3 md:p-5 font-bold text-zinc-500 text-xs md:text-sm">${race.rnd}</td>
+                    <td class="p-3 md:p-5 font-bold text-zinc-500 text-xs">${race.rnd}</td>
                     <td class="p-3 md:p-5">
-                        <span class="f1-font font-bold block text-xs md:text-base">${race.gp}</span>
+                        <span class="f1-font font-bold block text-xs md:text-sm uppercase">${race.gp}</span>
                         <span class="text-[9px] text-zinc-500 block mt-0.5">${race.venue}</span>
                     </td>
-                    <td class="p-3 md:p-5 text-zinc-400 hidden md:table-cell text-sm">${race.venue}</td>
+                    <td class="p-3 md:p-5 text-zinc-400 hidden md:table-cell text-xs">${race.venue}</td>
                     <td class="p-3 md:p-5">
-                        <span class="text-zinc-200 text-xs md:text-sm block">${formattedDate}</span>
-                        <span class="text-red-500 font-bold text-[10px] md:text-sm block">${race.time}</span>
+                        <span class="text-zinc-200 text-xs block">${formattedDate}</span>
+                        <span class="text-red-500 font-bold text-[10px] block">${race.time}</span>
                     </td>
                     <td class="p-3 md:p-5 text-center">
-                        ${isSprint 
-                            ? '<span class="sprint-badge text-[8px] md:text-[10px] px-1.5 md:px-2 py-0.5 md:py-1 rounded text-white font-bold italic uppercase">Sprint</span>' 
-                            : '<span class="bg-zinc-700 text-[8px] md:text-[10px] px-1.5 md:px-2 py-0.5 md:py-1 rounded text-zinc-300 font-bold uppercase">Main</span>'}
+                        ${isSprint ? '<span class="sprint-badge text-[8px] px-1.5 py-0.5 rounded text-white font-bold italic uppercase">Sprint</span>' : '<span class="bg-zinc-700 text-[8px] px-1.5 py-0.5 rounded text-zinc-300 font-bold uppercase">Main</span>'}
                     </td>
                     <td class="p-3 md:p-5 text-zinc-500 text-right"><i class="fas fa-chevron-down rotate-icon text-xs"></i></td>
                 `;
                 
+                const s = race.schedule;
                 const detailsRow = document.createElement('tr');
                 detailsRow.id = `details-${race.rnd}`;
                 detailsRow.className = 'details-row border-b border-zinc-800';
-                
-                const s = race.schedule;
                 detailsRow.innerHTML = `
                     <td colspan="6" class="p-0">
                         <div class="p-4 md:p-6 mobile-schedule-grid bg-zinc-950/50">
-                            <!-- Session Item -->
-                            <div class="flex md:block items-center justify-between border-l-2 border-zinc-700 pl-3 py-1 md:py-0">
-                                <div>
-                                    <span class="text-[9px] md:text-[10px] uppercase text-zinc-500 font-bold block mb-0.5">Practice 1</span>
-                                    <span class="text-[9px] md:text-[10px] text-zinc-400 font-medium">${s.p1.split(', ')[0]}</span>
-                                </div>
-                                <span class="text-sm md:text-base font-semibold text-white">${s.p1.split(', ')[1]}</span>
+                            <div class="flex md:block items-center justify-between border-l-2 border-zinc-700 pl-3 py-1">
+                                <div><span class="text-[9px] uppercase text-zinc-500 font-bold block">Practice 1</span><span class="text-[9px] text-zinc-400">${s.p1.split(', ')[0]}</span></div>
+                                <span class="text-xs font-semibold text-white">${s.p1.split(', ')[1]}</span>
                             </div>
-                            <!-- Session Item -->
-                            <div class="flex md:block items-center justify-between border-l-2 border-zinc-700 pl-3 py-1 md:py-0">
-                                <div>
-                                    <span class="text-[9px] md:text-[10px] uppercase text-zinc-500 font-bold block mb-0.5">${isSprint ? 'Sprint Shootout' : 'Practice 2'}</span>
-                                    <span class="text-[9px] md:text-[10px] text-zinc-400 font-medium">${(isSprint ? s.ss : s.p2).split(', ')[0]}</span>
-                                </div>
-                                <span class="text-sm md:text-base font-semibold text-white">${(isSprint ? s.ss : s.p2).split(', ')[1]}</span>
+                            <div class="flex md:block items-center justify-between border-l-2 border-zinc-700 pl-3 py-1">
+                                <div><span class="text-[9px] uppercase text-zinc-500 font-bold block">${isSprint ? 'Sprint Shootout' : 'Practice 2'}</span><span class="text-[9px] text-zinc-400">${(isSprint ? s.ss : s.p2).split(', ')[0]}</span></div>
+                                <span class="text-xs font-semibold text-white">${(isSprint ? s.ss : s.p2).split(', ')[1]}</span>
                             </div>
-                            <!-- Session Item -->
-                            <div class="flex md:block items-center justify-between border-l-2 border-zinc-700 pl-3 py-1 md:py-0">
-                                <div>
-                                    <span class="text-[9px] md:text-[10px] uppercase text-zinc-500 font-bold block mb-0.5">${isSprint ? 'Sprint Race' : 'Practice 3'}</span>
-                                    <span class="text-[9px] md:text-[10px] text-zinc-400 font-medium">${(isSprint ? s.s : s.p3).split(', ')[0]}</span>
-                                </div>
-                                <span class="text-sm md:text-base font-semibold text-orange-400">${(isSprint ? s.s : s.p3).split(', ')[1]}</span>
+                            <div class="flex md:block items-center justify-between border-l-2 border-zinc-700 pl-3 py-1">
+                                <div><span class="text-[9px] uppercase text-zinc-500 font-bold block">${isSprint ? 'Sprint Race' : 'Practice 3'}</span><span class="text-[9px] text-zinc-400">${(isSprint ? s.s : s.p3).split(', ')[0]}</span></div>
+                                <span class="text-xs font-semibold ${isSprint ? 'text-orange-400' : 'text-white'}">${(isSprint ? s.s : s.p3).split(', ')[1]}</span>
                             </div>
-                            <!-- Session Item -->
-                            <div class="flex md:block items-center justify-between border-l-2 border-zinc-700 pl-3 py-1 md:py-0">
-                                <div>
-                                    <span class="text-[9px] md:text-[10px] uppercase text-zinc-500 font-bold block mb-0.5">Qualifying</span>
-                                    <span class="text-[9px] md:text-[10px] text-zinc-400 font-medium">${s.q.split(', ')[0]}</span>
-                                </div>
-                                <span class="text-sm md:text-base font-semibold text-red-500">${s.q.split(', ')[1]}</span>
+                            <div class="flex md:block items-center justify-between border-l-2 border-zinc-700 pl-3 py-1">
+                                <div><span class="text-[9px] uppercase text-zinc-500 font-bold block">Qualifying</span><span class="text-[9px] text-zinc-400">${s.q.split(', ')[0]}</span></div>
+                                <span class="text-xs font-semibold text-red-500">${s.q.split(', ')[1]}</span>
                             </div>
-                            <!-- Session Item (Featured) -->
                             <div class="flex md:block items-center justify-between border-l-4 border-red-600 pl-3 py-2 bg-red-600/10 rounded-r-md">
-                                <div>
-                                    <span class="text-[9px] md:text-[10px] uppercase text-red-600 font-bold block mb-0.5">Grand Prix</span>
-                                    <span class="text-[9px] md:text-[10px] text-red-400 font-medium">${s.r.split(', ')[0]}</span>
-                                </div>
-                                <span class="text-sm md:text-base font-black text-white">${s.r.split(', ')[1]}</span>
+                                <div><span class="text-[9px] uppercase text-red-600 font-bold block italic">Grand Prix</span><span class="text-[9px] text-red-400">${s.r.split(', ')[0]}</span></div>
+                                <span class="text-sm font-black text-white">${s.r.split(', ')[1]}</span>
                             </div>
                         </div>
                     </td>
                 `;
-
                 tbody.appendChild(mainRow);
                 tbody.appendChild(detailsRow);
             });
         }
 
         function filterRaces(type) {
-            document.querySelectorAll('.details-row').forEach(r => r.classList.remove('active'));
             renderRaces(type, document.getElementById('searchInput').value);
-            // Highlight active filter button
-            document.querySelectorAll('.flex > button').forEach(btn => {
-                btn.classList.toggle('active', btn.getAttribute('onclick').includes(type));
-            });
+            document.querySelectorAll('.flex > button').forEach(btn => btn.classList.toggle('active', btn.getAttribute('onclick').includes(type)));
         }
 
-        document.getElementById('searchInput').addEventListener('input', (e) => {
-            renderRaces('all', e.target.value);
-        });
+        document.getElementById('searchInput').addEventListener('input', (e) => renderRaces('all', e.target.value));
 
         function updateCountdown() {
             const now = new Date();
             const nextRace = races.find(r => new Date(r.date + " " + r.time.replace(" PM", ":00").replace(" AM", ":00")) > now);
-
             if (nextRace) {
-                const raceDateStr = nextRace.date + " " + nextRace.time.replace(" PM", ":00").replace(" AM", ":00");
-                const targetDate = new Date(raceDateStr);
+                const targetDate = new Date(nextRace.date + " " + nextRace.time.replace(" PM", ":00").replace(" AM", ":00"));
                 const diff = targetDate - now;
-
                 document.getElementById('countdown-container').classList.remove('hidden');
                 document.getElementById('next-race-name').innerText = nextRace.gp;
-
-                const d = Math.floor(diff / (1000 * 60 * 60 * 24));
-                const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-                const s = Math.floor((diff % (1000 * 60)) / 1000);
-
-                document.getElementById('days').innerText = String(d).padStart(2, '0');
-                document.getElementById('hours').innerText = String(h).padStart(2, '0');
-                document.getElementById('minutes').innerText = String(m).padStart(2, '0');
-                document.getElementById('seconds').innerText = String(s).padStart(2, '0');
+                document.getElementById('days').innerText = String(Math.floor(diff / (1000 * 60 * 60 * 24))).padStart(2, '0');
+                document.getElementById('hours').innerText = String(Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
+                document.getElementById('minutes').innerText = String(Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
+                document.getElementById('seconds').innerText = String(Math.floor((diff % (1000 * 60)) / 1000)).padStart(2, '0');
             }
-        }
-
-        let currentViews = 1248;
-        function updateViewCounter() {
-            currentViews += Math.floor(Math.random() * 5) - 2;
-            document.getElementById('viewCount').innerText = currentViews.toLocaleString();
         }
 
         const aeroModes = {
             'z-mode': { title: 'Z-Mode: Cornering', desc: 'Flaps closed for maximum downforce in turns.' },
             'x-mode': { title: 'X-Mode: Straight-line', desc: 'Flaps open to minimize drag for top speed on straights.' },
-            'override': { title: 'Manual Boost', desc: '350kW surge to assist overtaking when within 1s of lead car.' }
+            'override': { title: 'Manual Override', desc: 'Provides a burst of extra battery power (350kW) for following car when within 1s.' }
         };
 
         function showAero(mode) {
@@ -492,8 +487,11 @@
             renderRaces();
             updateCountdown();
             setInterval(updateCountdown, 1000);
-            setInterval(updateViewCounter, 3000);
             showAero('z-mode');
+            setInterval(() => {
+                const count = document.getElementById('viewCount');
+                count.innerText = (parseInt(count.innerText.replace(',','')) + Math.floor(Math.random() * 3)).toLocaleString();
+            }, 5000);
         };
     </script>
 </body>
