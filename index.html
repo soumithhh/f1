@@ -36,7 +36,16 @@
             border: 2px solid var(--f1-red);
         }
 
-        tr:hover { background-color: rgba(255, 255, 255, 0.05); }
+        tr.main-row:hover { background-color: rgba(255, 255, 255, 0.05); cursor: pointer; }
+
+        .details-row {
+            background-color: rgba(0, 0, 0, 0.3);
+            display: none;
+        }
+
+        .details-row.active {
+            display: table-row;
+        }
 
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #15151e; }
@@ -49,7 +58,6 @@
             object-fit: contain;
         }
 
-        /* View Count Styling */
         .view-counter {
             position: fixed;
             bottom: 20px;
@@ -65,6 +73,19 @@
             z-index: 100;
             backdrop-filter: blur(4px);
             color: #aaa;
+        }
+
+        .tab-btn.active {
+            border-color: var(--f1-red);
+            color: white;
+            background: rgba(225, 6, 0, 0.1);
+        }
+
+        .rotate-icon {
+            transition: transform 0.3s ease;
+        }
+        .active .rotate-icon {
+            transform: rotate(180deg);
         }
     </style>
 </head>
@@ -129,15 +150,16 @@
 
         <!-- Race Table -->
         <section class="overflow-x-auto card-gradient rounded-2xl shadow-xl">
-            <table class="w-full text-left border-collapse min-w-[800px]">
+            <table class="w-full text-left border-collapse min-w-[900px]">
                 <thead class="bg-black/50 text-zinc-400 uppercase text-xs tracking-widest border-b border-zinc-800">
                     <tr>
                         <th class="p-5">Rnd</th>
                         <th class="p-5">Grand Prix</th>
                         <th class="p-5">Venue</th>
-                        <th class="p-5">Date (IST)</th>
-                        <th class="p-5">Start Time</th>
+                        <th class="p-5">Race Date (IST)</th>
+                        <th class="p-5">Race Time</th>
                         <th class="p-5 text-center">Type</th>
+                        <th class="p-5"></th>
                     </tr>
                 </thead>
                 <tbody id="raceTableBody">
@@ -146,24 +168,195 @@
             </table>
         </section>
 
-        <!-- 2026 Changes Grid -->
-        <section class="grid grid-cols-1 md:grid-cols-3 gap-6 pb-20">
-            <div class="card-gradient p-6 rounded-2xl border-l-4 border-blue-500">
-                <h3 class="f1-font text-lg mb-3"><i class="fas fa-bolt-lightning text-blue-500 mr-2"></i> Power Units</h3>
-                <p class="text-zinc-400 text-sm leading-relaxed">Removal of MGU-H. Battery power increased to 350kW (approx 470bhp). 50/50 split between ICE and Electrical power.</p>
+        <!-- GLOBAL RESET CONTENT START -->
+        <section class="space-y-12 py-10">
+            <div class="text-center space-y-4">
+                <h2 class="text-4xl md:text-6xl f1-font font-bold tracking-tighter uppercase">Formula 1 2026: <span class="text-red-600">The Global Reset</span></h2>
+                <p class="text-zinc-400 max-w-2xl mx-auto">The 2026 season marks the most significant regulatory overhaul in Formula 1 history. Below is the essential information categorized for the next era.</p>
             </div>
-            <div class="card-gradient p-6 rounded-2xl border-l-4 border-green-500">
-                <h3 class="f1-font text-lg mb-3"><i class="fas fa-leaf text-green-500 mr-2"></i> 100% Sustainable Fuel</h3>
-                <p class="text-zinc-400 text-sm leading-relaxed">Introduction of drop-in sustainable fuels with zero net CO2 emissions. No engine modifications for the fuel itself.</p>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div class="card-gradient p-8 rounded-3xl border-t-4 border-red-600">
+                    <h3 class="f1-font text-2xl mb-6 flex items-center gap-3">
+                        <i class="fas fa-microchip text-red-600"></i> 1. Technical Revolution: "Nimble Cars"
+                    </h3>
+                    <p class="text-zinc-400 mb-6 italic">FIA Goal: "Agile Racing" - Smaller, lighter cars for better battling.</p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="bg-zinc-900/50 p-4 rounded-xl border border-zinc-800">
+                            <span class="text-red-500 font-bold block text-sm uppercase">Weight Reduction</span>
+                            <span class="text-xl font-bold">Dropped by 30kg</span>
+                            <span class="text-zinc-500 block text-xs">(to 768kg)</span>
+                        </div>
+                        <div class="bg-zinc-900/50 p-4 rounded-xl border border-zinc-800">
+                            <span class="text-red-500 font-bold block text-sm uppercase">Dimensions</span>
+                            <span class="text-xl font-bold">Shortened & Narrowed</span>
+                            <span class="text-zinc-500 block text-xs">WB: -200mm | Width: -100mm</span>
+                        </div>
+                        <div class="bg-zinc-900/50 p-4 rounded-xl border border-zinc-800">
+                            <span class="text-red-500 font-bold block text-sm uppercase">Tyres</span>
+                            <span class="text-xl font-bold">Narrower Profile</span>
+                            <span class="text-zinc-500 block text-xs">F: -25mm | R: -30mm</span>
+                        </div>
+                        <div class="bg-zinc-900/50 p-4 rounded-xl border border-zinc-800">
+                            <span class="text-red-500 font-bold block text-sm uppercase">Aerodynamics</span>
+                            <span class="text-xl font-bold">-30% Downforce</span>
+                            <span class="text-zinc-500 block text-xs">-55% Drag reduction</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-gradient p-8 rounded-3xl border-t-4 border-red-600 flex flex-col">
+                    <h3 class="f1-font text-2xl mb-2 flex items-center gap-3">
+                        <i class="fas fa-wind text-red-600"></i> 2. Active Aerodynamics
+                    </h3>
+                    <p class="text-zinc-400 mb-6 text-sm">DRS is replaced by Active Aero with movable front and rear wing flaps.</p>
+                    
+                    <div class="flex gap-2 mb-4 overflow-x-auto pb-2">
+                        <button onclick="showAero('z-mode')" id="btn-z-mode" class="tab-btn active px-4 py-2 border border-zinc-700 rounded-lg text-xs font-bold whitespace-nowrap transition-all uppercase">Z-Mode</button>
+                        <button onclick="showAero('x-mode')" id="btn-x-mode" class="tab-btn px-4 py-2 border border-zinc-700 rounded-lg text-xs font-bold whitespace-nowrap transition-all uppercase">X-Mode</button>
+                        <button onclick="showAero('override')" id="btn-override" class="tab-btn px-4 py-2 border border-zinc-700 rounded-lg text-xs font-bold whitespace-nowrap transition-all uppercase">Manual Override</button>
+                    </div>
+
+                    <div id="aero-content" class="bg-black/40 p-6 rounded-2xl flex-grow flex flex-col justify-center">
+                        <h4 id="aero-title" class="f1-font text-lg text-red-500 mb-2">Cornering Mode</h4>
+                        <p id="aero-desc" class="text-zinc-300">Flaps closed for maximum downforce in turns.</p>
+                    </div>
+                </div>
+
+                <div class="card-gradient p-8 rounded-3xl border-t-4 border-red-600">
+                    <h3 class="f1-font text-2xl mb-6 flex items-center gap-3">
+                        <i class="fas fa-bolt text-red-600"></i> 3. Power Unit Evolution
+                    </h3>
+                    <div class="space-y-4">
+                        <div class="flex items-start gap-4">
+                            <div class="bg-red-600/20 p-2 rounded-lg text-red-500"><i class="fas fa-percentage"></i></div>
+                            <div>
+                                <span class="font-bold block">50/50 Power Split</span>
+                                <span class="text-sm text-zinc-400">Equal balance between ICE and Electric (MGU-K).</span>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="bg-red-600/20 p-2 rounded-lg text-red-500"><i class="fas fa-tachometer-alt"></i></div>
+                            <div>
+                                <span class="font-bold block">MGU-K Power Surge</span>
+                                <span class="text-sm text-zinc-400">Increased to 350kW (approx. 470hp).</span>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="bg-red-600/20 p-2 rounded-lg text-red-500"><i class="fas fa-leaf"></i></div>
+                            <div>
+                                <span class="font-bold block">100% Sustainable Fuel</span>
+                                <span class="text-sm text-zinc-400">Carbon-neutral drop-in fuels introduced.</span>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="bg-red-600/20 p-2 rounded-lg text-red-500"><i class="fas fa-minus-circle"></i></div>
+                            <div>
+                                <span class="font-bold block">MGU-H Removal</span>
+                                <span class="text-sm text-zinc-400">Complex heat recovery system removed for simplification.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-gradient p-8 rounded-3xl border-t-4 border-red-600">
+                    <h3 class="f1-font text-2xl mb-6 flex items-center gap-3">
+                        <i class="fas fa-calendar-alt text-red-600"></i> 5. Major Calendar Changes
+                    </h3>
+                    <ul class="space-y-4">
+                        <li class="p-4 bg-zinc-900/40 rounded-xl border-l-4 border-red-600">
+                            <strong class="block text-white uppercase text-xs mb-1">Madrid Debut</strong>
+                            <p class="text-sm text-zinc-400">Spanish GP moves to a new street circuit in Madrid (Barcelona retains a slot).</p>
+                        </li>
+                        <li class="p-4 bg-zinc-900/40 rounded-xl border-l-4 border-red-600">
+                            <strong class="block text-white uppercase text-xs mb-1">Triple Header Finale</strong>
+                            <p class="text-sm text-zinc-400">Season ends with a sprint: Las Vegas, Qatar, and Abu Dhabi.</p>
+                        </li>
+                        <li class="p-4 bg-zinc-900/40 rounded-xl border-l-4 border-red-600">
+                            <strong class="block text-white uppercase text-xs mb-1">Baku Shift</strong>
+                            <p class="text-sm text-zinc-400">Azerbaijan GP will be held on a Saturday for the first time.</p>
+                        </li>
+                    </ul>
+                </div>
             </div>
-            <div class="card-gradient p-6 rounded-2xl border-l-4 border-red-500">
-                <h3 class="f1-font text-lg mb-3"><i class="fas fa-industry text-red-500 mr-2"></i> New Manufacturers</h3>
-                <p class="text-zinc-400 text-sm leading-relaxed">Audi enters as a works team. Ford partners with Red Bull Powertrains. Cadillac joins the grid.</p>
+
+            <div class="card-gradient p-8 rounded-3xl border-t-4 border-red-600">
+                <h3 class="f1-font text-2xl mb-6 flex items-center gap-3">
+                    <i class="fas fa-users text-red-600"></i> 4. Confirmed 2026 Driver Grid
+                </h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div class="p-3 bg-black/50 rounded-lg border border-zinc-800">
+                        <span class="text-red-500 font-bold block text-xs uppercase mb-1">Red Bull</span>
+                        <span class="text-sm block">Max Verstappen</span>
+                        <span class="text-sm text-zinc-500">Isack Hadjar</span>
+                    </div>
+                    <div class="p-3 bg-black/50 rounded-lg border border-zinc-800">
+                        <span class="text-red-500 font-bold block text-xs uppercase mb-1">Ferrari</span>
+                        <span class="text-sm block">Lewis Hamilton</span>
+                        <span class="text-sm text-zinc-500">Charles Leclerc</span>
+                    </div>
+                    <div class="p-3 bg-black/50 rounded-lg border border-zinc-800">
+                        <span class="text-red-500 font-bold block text-xs uppercase mb-1">McLaren</span>
+                        <span class="text-sm block">Lando Norris</span>
+                        <span class="text-sm text-zinc-500">Oscar Piastri</span>
+                    </div>
+                    <div class="p-3 bg-black/50 rounded-lg border border-zinc-800">
+                        <span class="text-red-500 font-bold block text-xs uppercase mb-1">Mercedes</span>
+                        <span class="text-sm block">George Russell</span>
+                        <span class="text-sm text-zinc-500">Kimi Antonelli</span>
+                    </div>
+                    <div class="p-3 bg-black/50 rounded-lg border border-zinc-800">
+                        <span class="text-red-500 font-bold block text-xs uppercase mb-1">Aston Martin</span>
+                        <span class="text-sm block">Fernando Alonso</span>
+                        <span class="text-sm text-zinc-500">Lance Stroll</span>
+                    </div>
+                    <div class="p-3 bg-black/50 rounded-lg border border-zinc-800">
+                        <span class="text-red-500 font-bold block text-xs uppercase mb-1">Audi</span>
+                        <span class="text-sm block">Nico Hülkenberg</span>
+                        <span class="text-sm text-zinc-500">Gabriel Bortoleto</span>
+                    </div>
+                    <div class="p-3 bg-black/50 rounded-lg border border-zinc-800">
+                        <span class="text-red-500 font-bold block text-xs uppercase mb-1">Cadillac</span>
+                        <span class="text-sm block">Sergio Pérez</span>
+                        <span class="text-sm text-zinc-500">Valtteri Bottas</span>
+                    </div>
+                    <div class="p-3 bg-black/50 rounded-lg border border-zinc-800">
+                        <span class="text-red-500 font-bold block text-xs uppercase mb-1">Williams</span>
+                        <span class="text-sm block">Carlos Sainz</span>
+                        <span class="text-sm text-zinc-500">Alex Albon</span>
+                    </div>
+                    <div class="p-3 bg-black/50 rounded-lg border border-zinc-800">
+                        <span class="text-red-500 font-bold block text-xs uppercase mb-1">Alpine</span>
+                        <span class="text-sm block">Pierre Gasly</span>
+                        <span class="text-sm text-zinc-500">Franco Colapinto</span>
+                    </div>
+                    <div class="p-3 bg-black/50 rounded-lg border border-zinc-800">
+                        <span class="text-red-500 font-bold block text-xs uppercase mb-1">Haas</span>
+                        <span class="text-sm block">Esteban Ocon</span>
+                        <span class="text-sm text-zinc-500">Oliver Bearman</span>
+                    </div>
+                    <div class="p-3 bg-black/50 rounded-lg border border-zinc-800">
+                        <span class="text-red-500 font-bold block text-xs uppercase mb-1">Racing Bulls</span>
+                        <span class="text-sm block">Liam Lawson</span>
+                        <span class="text-sm text-zinc-500">Arvid Lindblad</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="grid grid-cols-1 md:grid-cols-3 gap-6 pb-20 opacity-50 italic">
+            <div class="p-4 border border-zinc-800 rounded-xl text-xs">
+                * MGU-H removal confirmed for cost efficiency.
+            </div>
+            <div class="p-4 border border-zinc-800 rounded-xl text-xs">
+                * All fuels are required to be non-biological origin.
+            </div>
+            <div class="p-4 border border-zinc-800 rounded-xl text-xs">
+                * 2026 marks the first year for Ford's return with Red Bull.
             </div>
         </section>
     </main>
 
-    <!-- View Counter -->
     <div class="view-counter">
         <i class="fas fa-eye text-red-600"></i>
         <span>Live Views: <strong id="viewCount" class="text-white">1,248</strong></span>
@@ -171,31 +364,45 @@
 
     <script>
         const races = [
-            { rnd: 1, gp: "Australian", venue: "Albert Park, Melbourne", date: "2026-03-08", time: "09:30 AM", type: "Standard" },
-            { rnd: 2, gp: "Chinese", venue: "Shanghai International", date: "2026-03-15", time: "12:30 PM", type: "Sprint" },
-            { rnd: 3, gp: "Japanese", venue: "Suzuka Circuit", date: "2026-03-29", time: "10:30 AM", type: "Standard" },
-            { rnd: 4, gp: "Bahrain", venue: "Sakhir Circuit", date: "2026-04-12", time: "08:30 PM", type: "Standard" },
-            { rnd: 5, gp: "Saudi Arabian", venue: "Jeddah Corniche", date: "2026-04-19", time: "10:30 PM", type: "Standard" },
-            { rnd: 6, gp: "Miami", venue: "Miami International", date: "2026-05-04", time: "01:30 AM", type: "Sprint" },
-            { rnd: 7, gp: "Canadian", venue: "Circuit Gilles Villeneuve", date: "2026-05-25", time: "01:30 AM", type: "Sprint" },
-            { rnd: 8, gp: "Monaco", venue: "Monte Carlo", date: "2026-06-07", time: "06:30 PM", type: "Standard" },
-            { rnd: 9, gp: "Barcelona", venue: "Circuit de Catalunya", date: "2026-06-14", time: "06:30 PM", type: "Standard" },
-            { rnd: 10, gp: "Austrian", venue: "Red Bull Ring", date: "2026-06-28", time: "06:30 PM", type: "Standard" },
-            { rnd: 11, gp: "British", venue: "Silverstone", date: "2026-07-05", time: "07:30 PM", type: "Sprint" },
-            { rnd: 12, gp: "Belgian", venue: "Spa-Francorchamps", date: "2026-07-19", time: "06:30 PM", type: "Standard" },
-            { rnd: 13, gp: "Hungarian", venue: "Hungaroring", date: "2026-07-26", time: "06:30 PM", type: "Standard" },
-            { rnd: 14, gp: "Dutch", venue: "Circuit Zandvoort", date: "2026-08-23", time: "06:30 PM", type: "Sprint" },
-            { rnd: 15, gp: "Italian", venue: "Monza Circuit", date: "2026-09-06", time: "06:30 PM", type: "Standard" },
-            { rnd: 16, gp: "Spanish", venue: "IFEMA Madrid Street", date: "2026-09-13", time: "06:30 PM", type: "Standard" },
-            { rnd: 17, gp: "Azerbaijan", venue: "Baku City Circuit", date: "2026-09-26", time: "04:30 PM", type: "Standard" },
-            { rnd: 18, gp: "Singapore", venue: "Marina Bay Street", date: "2026-10-11", time: "05:30 PM", type: "Sprint" },
-            { rnd: 19, gp: "United States", venue: "COTA, Austin", date: "2026-10-26", time: "01:30 AM", type: "Standard" },
-            { rnd: 20, gp: "Mexico City", venue: "Hermanos Rodríguez", date: "2026-11-02", time: "01:30 AM", type: "Standard" },
-            { rnd: 21, gp: "São Paulo", venue: "Interlagos", date: "2026-11-08", time: "10:30 PM", type: "Standard" },
-            { rnd: 22, gp: "Las Vegas", venue: "Las Vegas Strip", date: "2026-11-22", time: "09:30 AM", type: "Standard" },
-            { rnd: 23, gp: "Qatar", venue: "Lusail International", date: "2026-11-29", time: "09:30 PM", type: "Standard" },
-            { rnd: 24, gp: "Abu Dhabi", venue: "Yas Marina", date: "2026-12-06", time: "06:30 PM", type: "Standard" }
+            { rnd: 1, gp: "Australian", venue: "Albert Park, Melbourne", date: "2026-03-08", time: "09:30 AM", type: "Standard", schedule: { p1: "06-Mar, 07:00 AM", p2: "06-Mar, 10:30 AM", p3: "07-Mar, 07:00 AM", q: "07-Mar, 10:30 AM", r: "08-Mar, 09:30 AM" }},
+            { rnd: 2, gp: "Chinese", venue: "Shanghai International", date: "2026-03-15", time: "12:30 PM", type: "Sprint", schedule: { p1: "13-Mar, 09:00 AM", ss: "13-Mar, 12:30 PM", s: "14-Mar, 09:00 AM", q: "14-Mar, 12:30 PM", r: "15-Mar, 12:30 PM" }},
+            { rnd: 3, gp: "Japanese", venue: "Suzuka Circuit", date: "2026-03-29", time: "10:30 AM", type: "Standard", schedule: { p1: "27-Mar, 08:00 AM", p2: "27-Mar, 11:30 AM", p3: "28-Mar, 08:00 AM", q: "28-Mar, 11:30 AM", r: "29-Mar, 10:30 AM" }},
+            { rnd: 4, gp: "Bahrain", venue: "Sakhir Circuit", date: "2026-04-12", time: "08:30 PM", type: "Standard", schedule: { p1: "10-Apr, 04:00 PM", p2: "10-Apr, 07:30 PM", p3: "11-Apr, 05:00 PM", q: "11-Apr, 08:30 PM", r: "12-Apr, 08:30 PM" }},
+            { rnd: 5, gp: "Saudi Arabian", venue: "Jeddah Corniche", date: "2026-04-19", time: "10:30 PM", type: "Standard", schedule: { p1: "17-Apr, 06:00 PM", p2: "17-Apr, 09:30 PM", p3: "18-Apr, 07:00 PM", q: "18-Apr, 10:30 PM", r: "19-Apr, 10:30 PM" }},
+            { rnd: 6, gp: "Miami", venue: "Miami International", date: "2026-05-04", time: "01:30 AM", type: "Sprint", schedule: { p1: "02-May, 10:00 PM", ss: "03-May, 01:30 AM", s: "03-May, 10:00 PM", q: "04-May, 01:30 AM", r: "04-May, 01:30 AM" }},
+            { rnd: 7, gp: "Canadian", venue: "Circuit Gilles Villeneuve", date: "2026-05-25", time: "01:30 AM", type: "Sprint", schedule: { p1: "23-May, 11:00 PM", ss: "24-May, 02:30 AM", s: "24-May, 11:30 PM", q: "25-May, 02:30 AM", r: "25-May, 01:30 AM" }},
+            { rnd: 8, gp: "Monaco", venue: "Monte Carlo", date: "2026-06-07", time: "06:30 PM", type: "Standard", schedule: { p1: "05-Jun, 05:00 PM", p2: "05-Jun, 08:30 PM", p3: "06-Jun, 04:00 PM", q: "06-Jun, 07:30 PM", r: "07-Jun, 06:30 PM" }},
+            { rnd: 9, gp: "Barcelona", venue: "Circuit de Catalunya", date: "2026-06-14", time: "06:30 PM", type: "Standard", schedule: { p1: "12-Jun, 05:00 PM", p2: "12-Jun, 08:30 PM", p3: "13-Jun, 04:00 PM", q: "13-Jun, 07:30 PM", r: "14-Jun, 06:30 PM" }},
+            { rnd: 10, gp: "Austrian", venue: "Red Bull Ring", date: "2026-06-28", time: "06:30 PM", type: "Standard", schedule: { p1: "26-Jun, 05:00 PM", p2: "26-Jun, 08:30 PM", p3: "27-Jun, 04:00 PM", q: "27-Jun, 07:30 PM", r: "28-Jun, 06:30 PM" }},
+            { rnd: 11, gp: "British", venue: "Silverstone", date: "2026-07-05", time: "07:30 PM", type: "Sprint", schedule: { p1: "03-Jul, 05:00 PM", ss: "03-Jul, 08:30 PM", s: "04-Jul, 04:00 PM", q: "04-Jul, 07:30 PM", r: "05-Jul, 07:30 PM" }},
+            { rnd: 12, gp: "Belgian", venue: "Spa-Francorchamps", date: "2026-07-19", time: "06:30 PM", type: "Standard", schedule: { p1: "17-Jul, 05:00 PM", p2: "17-Jul, 08:30 PM", p3: "18-Jul, 04:00 PM", q: "18-Jul, 07:30 PM", r: "19-Jul, 06:30 PM" }},
+            { rnd: 13, gp: "Hungarian", venue: "Hungaroring", date: "2026-07-26", time: "06:30 PM", type: "Standard", schedule: { p1: "24-Jul, 05:00 PM", p2: "24-Jul, 08:30 PM", p3: "25-Jul, 04:00 PM", q: "25-Jul, 07:30 PM", r: "26-Jul, 06:30 PM" }},
+            { rnd: 14, gp: "Dutch", venue: "Circuit Zandvoort", date: "2026-08-23", time: "06:30 PM", type: "Sprint", schedule: { p1: "21-Aug, 05:00 PM", ss: "21-Aug, 08:30 PM", s: "22-Aug, 04:00 PM", q: "22-Aug, 07:30 PM", r: "23-Aug, 06:30 PM" }},
+            { rnd: 15, gp: "Italian", venue: "Monza Circuit", date: "2026-09-06", time: "06:30 PM", type: "Standard", schedule: { p1: "04-Sep, 05:00 PM", p2: "04-Sep, 08:30 PM", p3: "05-Sep, 04:00 PM", q: "05-Sep, 07:30 PM", r: "06-Sep, 06:30 PM" }},
+            { rnd: 16, gp: "Spanish", venue: "IFEMA Madrid Street", date: "2026-09-13", time: "06:30 PM", type: "Standard", schedule: { p1: "11-Sep, 05:00 PM", p2: "11-Sep, 08:30 PM", p3: "12-Sep, 04:00 PM", q: "12-Sep, 07:30 PM", r: "13-Sep, 06:30 PM" }},
+            { rnd: 17, gp: "Azerbaijan", venue: "Baku City Circuit", date: "2026-09-26", time: "04:30 PM", type: "Standard", schedule: { p1: "25-Sep, 03:00 PM", p2: "25-Sep, 06:30 PM", p3: "26-Sep, 02:00 PM", q: "26-Sep, 05:30 PM", r: "26-Sep, 04:30 PM" }},
+            { rnd: 18, gp: "Singapore", venue: "Marina Bay Street", date: "2026-10-11", time: "05:30 PM", type: "Sprint", schedule: { p1: "09-Oct, 03:00 PM", ss: "09-Oct, 06:30 PM", s: "10-Oct, 03:00 PM", q: "10-Oct, 06:30 PM", r: "11-Oct, 05:30 PM" }},
+            { rnd: 19, gp: "United States", venue: "COTA, Austin", date: "2026-10-26", time: "01:30 AM", type: "Standard", schedule: { p1: "24-Oct, 11:00 PM", p2: "25-Oct, 02:30 AM", p3: "25-Oct, 11:00 PM", q: "26-Oct, 02:30 AM", r: "26-Oct, 01:30 AM" }},
+            { rnd: 20, gp: "Mexico City", venue: "Hermanos Rodríguez", date: "2026-11-02", time: "01:30 AM", type: "Standard", schedule: { p1: "31-Oct, 11:00 PM", p2: "01-Nov, 02:30 AM", p3: "01-Nov, 11:00 PM", q: "02-Nov, 02:30 AM", r: "02-Nov, 01:30 AM" }},
+            { rnd: 21, gp: "São Paulo", venue: "Interlagos", date: "2026-11-08", time: "10:30 PM", type: "Standard", schedule: { p1: "06-Nov, 08:00 PM", p2: "06-Nov, 11:30 PM", p3: "07-Nov, 08:00 PM", q: "07-Nov, 11:30 PM", r: "08-Nov, 10:30 PM" }},
+            { rnd: 22, gp: "Las Vegas", venue: "Las Vegas Strip", date: "2026-11-22", time: "09:30 AM", type: "Standard", schedule: { p1: "20-Nov, 08:00 AM", p2: "20-Nov, 11:30 AM", p3: "21-Nov, 08:00 AM", q: "21-Nov, 11:30 AM", r: "22-Nov, 09:30 AM" }},
+            { rnd: 23, gp: "Qatar", venue: "Lusail International", date: "2026-11-29", time: "09:30 PM", type: "Standard", schedule: { p1: "27-Nov, 05:00 PM", p2: "27-Nov, 08:30 PM", p3: "28-Nov, 06:00 PM", q: "28-Nov, 09:30 PM", r: "29-Nov, 09:30 PM" }},
+            { rnd: 24, gp: "Abu Dhabi", venue: "Yas Marina", date: "2026-12-06", time: "06:30 PM", type: "Standard", schedule: { p1: "04-Dec, 03:00 PM", p2: "04-Dec, 06:30 PM", p3: "05-Dec, 04:00 PM", q: "05-Dec, 07:30 PM", r: "06-Dec, 06:30 PM" }}
         ];
+
+        function toggleDetails(rnd) {
+            const row = document.getElementById(`details-${rnd}`);
+            const main = document.getElementById(`main-${rnd}`);
+            const isActive = row.classList.contains('active');
+            
+            document.querySelectorAll('.details-row').forEach(r => r.classList.remove('active'));
+            document.querySelectorAll('.main-row').forEach(r => r.classList.remove('active'));
+            
+            if (!isActive) {
+                row.classList.add('active');
+                main.classList.add('active');
+            }
+        }
 
         function renderRaces(filter = 'all', search = '') {
             const tbody = document.getElementById('raceTableBody');
@@ -209,9 +416,12 @@
             });
 
             filtered.forEach(race => {
-                const row = document.createElement('tr');
-                row.className = 'border-b border-zinc-800 transition-all';
-                row.innerHTML = `
+                const isSprint = race.type === 'Sprint';
+                const mainRow = document.createElement('tr');
+                mainRow.id = `main-${race.rnd}`;
+                mainRow.className = 'main-row border-b border-zinc-800 transition-all';
+                mainRow.onclick = () => toggleDetails(race.rnd);
+                mainRow.innerHTML = `
                     <td class="p-5 font-bold text-zinc-500">${race.rnd}</td>
                     <td class="p-5">
                         <span class="f1-font font-bold block md:inline">${race.gp}</span>
@@ -221,18 +431,58 @@
                     <td class="p-5 text-zinc-200">${new Date(race.date).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' })}</td>
                     <td class="p-5 font-semibold text-red-500">${race.time}</td>
                     <td class="p-5 text-center">
-                        ${race.type === 'Sprint' 
+                        ${isSprint 
                             ? '<span class="sprint-badge text-[10px] px-2 py-1 rounded-full text-white font-bold italic uppercase">Sprint</span>' 
                             : '<span class="bg-zinc-700 text-[10px] px-2 py-1 rounded-full text-zinc-300 font-bold uppercase">Main</span>'}
                     </td>
+                    <td class="p-5 text-zinc-500 text-right"><i class="fas fa-chevron-down rotate-icon"></i></td>
                 `;
-                tbody.appendChild(row);
+                
+                const detailsRow = document.createElement('tr');
+                detailsRow.id = `details-${race.rnd}`;
+                detailsRow.className = 'details-row border-b border-zinc-800';
+                
+                const sched = race.schedule;
+                detailsRow.innerHTML = `
+                    <td colspan="7" class="p-0">
+                        <div class="p-6 grid grid-cols-2 md:grid-cols-5 gap-4 bg-zinc-950/50">
+                            <div class="border-l border-zinc-700 pl-4">
+                                <span class="text-[10px] uppercase text-zinc-500 font-bold block mb-1">Practice 1</span>
+                                <span class="text-[10px] text-zinc-500 block mb-1">${sched.p1.split(', ')[0]}</span>
+                                <span class="text-sm font-semibold">${sched.p1.split(', ')[1]}</span>
+                            </div>
+                            <div class="border-l border-zinc-700 pl-4">
+                                <span class="text-[10px] uppercase text-zinc-500 font-bold block mb-1">${isSprint ? 'Sprint Shootout' : 'Practice 2'}</span>
+                                <span class="text-[10px] text-zinc-500 block mb-1">${(isSprint ? sched.ss : sched.p2).split(', ')[0]}</span>
+                                <span class="text-sm font-semibold">${(isSprint ? sched.ss : sched.p2).split(', ')[1]}</span>
+                            </div>
+                            <div class="border-l border-zinc-700 pl-4">
+                                <span class="text-[10px] uppercase text-zinc-500 font-bold block mb-1">${isSprint ? 'Sprint Race' : 'Practice 3'}</span>
+                                <span class="text-[10px] text-zinc-500 block mb-1">${(isSprint ? sched.s : sched.p3).split(', ')[0]}</span>
+                                <span class="text-sm font-semibold text-orange-400">${(isSprint ? sched.s : sched.p3).split(', ')[1]}</span>
+                            </div>
+                            <div class="border-l border-zinc-700 pl-4">
+                                <span class="text-[10px] uppercase text-zinc-500 font-bold block mb-1">Qualifying</span>
+                                <span class="text-[10px] text-zinc-500 block mb-1">${sched.q.split(', ')[0]}</span>
+                                <span class="text-sm font-semibold text-red-500">${sched.q.split(', ')[1]}</span>
+                            </div>
+                            <div class="border-l border-red-600 pl-4 bg-red-600/5 py-1">
+                                <span class="text-[10px] uppercase text-red-600 font-bold block mb-1 italic">Grand Prix</span>
+                                <span class="text-[10px] text-red-400 block mb-1">${sched.r.split(', ')[0]}</span>
+                                <span class="text-sm font-black text-white">${sched.r.split(', ')[1]}</span>
+                            </div>
+                        </div>
+                    </td>
+                `;
+
+                tbody.appendChild(mainRow);
+                tbody.appendChild(detailsRow);
             });
         }
 
         function filterRaces(type) {
+            document.querySelectorAll('.details-row').forEach(r => r.classList.remove('active'));
             renderRaces(type, document.getElementById('searchInput').value);
-            document.querySelectorAll('button').forEach(btn => btn.classList.remove('bg-zinc-700'));
         }
 
         document.getElementById('searchInput').addEventListener('input', (e) => {
@@ -263,12 +513,29 @@
             }
         }
 
-        // View Counter logic (Simulated live fluctuation)
         let currentViews = 1248;
         function updateViewCounter() {
-            const change = Math.floor(Math.random() * 5) - 2; // -2 to +2
+            const change = Math.floor(Math.random() * 5) - 2;
             currentViews += change;
             document.getElementById('viewCount').innerText = currentViews.toLocaleString();
+        }
+
+        const aeroModes = {
+            'z-mode': { title: 'Z-Mode: Cornering', desc: 'Flaps closed for maximum downforce in turns.' },
+            'x-mode': { title: 'X-Mode: Straight-line', desc: 'Flaps open to minimize drag for top speed on straights.' },
+            'override': { title: 'Manual Override: Boost', desc: 'Provides a burst of extra battery power (350kW) for the following car to assist overtaking.' }
+        };
+
+        function showAero(mode) {
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById(`btn-${mode}`).classList.add('active');
+            const content = document.getElementById('aero-content');
+            content.style.opacity = 0;
+            setTimeout(() => {
+                document.getElementById('aero-title').innerText = aeroModes[mode].title;
+                document.getElementById('aero-desc').innerText = aeroModes[mode].desc;
+                content.style.opacity = 1;
+            }, 150);
         }
 
         window.onload = () => {
@@ -276,6 +543,7 @@
             updateCountdown();
             setInterval(updateCountdown, 1000);
             setInterval(updateViewCounter, 3000);
+            showAero('z-mode');
         };
     </script>
 </body>
